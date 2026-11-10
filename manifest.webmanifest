@@ -1,0 +1,16 @@
+{
+  "name": "Move Again",
+  "short_name": "Move",
+  "description": "Day-by-day movement plan: Netherlands → Jakarta → baby.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#141413",
+  "theme_color": "#141413",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" },
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml" }
+  ]
+}

@@ -2,88 +2,204 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Move Again</title>
+<meta name="description" content="Day-by-day movement plan: Netherlands → Jakarta → baby.">
 <meta name="robots" content="noindex">
+<meta name="theme-color" content="#141413">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Move">
+<meta property="og:title" content="Move Again">
+<meta property="og:description" content="Day-by-day movement plan: Netherlands → Jakarta → baby.">
+<meta property="og:image" content="https://fit.ticekralt.com/og.png">
+<meta property="og:url" content="https://fit.ticekralt.com/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="icon" href="icon-192.png" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="manifest.webmanifest">
 <style>
-:root{--bg:#f6f4ef;--card:#fff;--ink:#1c1c1a;--muted:#6b6a64;--line:#e4e1d8;--accent:#d2552d}
-@media (prefers-color-scheme:dark){:root{--bg:#141413;--card:#1e1e1c;--ink:#f0eee8;--muted:#9a988f;--line:#2e2d2a;--accent:#f07a4f}}
-*{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Inter,sans-serif}
-main{max-width:760px;margin:0 auto;padding:40px 16px 80px}
-h1{font-size:2.4rem;line-height:1.1;margin:0 0 8px;letter-spacing:-.02em}
-h2{font-size:1.25rem;margin:0 0 12px}
-h2 span{color:var(--accent);margin-right:8px}
-.lead{color:var(--muted);margin:0 0 32px;font-size:1.05rem}
-section{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;margin-bottom:16px}
-ul{margin:0;padding-left:20px}li{margin:4px 0}
-.why{color:var(--muted);font-size:.92rem;margin-top:12px}
-.days{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-top:8px}
-.day{border:1px solid var(--line);border-radius:10px;padding:14px}
-.day h3{margin:0 0 8px;font-size:.95rem;color:var(--accent)}
-.day ul{padding-left:0;list-style:none;font-size:.92rem}
-.day li{display:flex;justify-content:space-between;gap:8px;border-bottom:1px dashed var(--line);padding:4px 0}
-.day li:last-child{border:0}
-.day b{font-weight:500;white-space:nowrap;color:var(--muted)}
-.rule{font-size:1.15rem;font-weight:600;border-left:3px solid var(--accent);padding-left:12px;margin:14px 0 0}
-footer{color:var(--muted);font-size:.85rem;text-align:center;margin-top:32px}
+:root{--bg:#f6f4ef;--card:#fff;--ink:#1c1c1a;--muted:#6b6a64;--line:#e4e1d8;--soft:#efece5;--accent:#d2552d;
+--k-home:#7a5bd6;--k-gym:#b8401c;--k-mobility:#2a8c82;--k-easy:#2a8c82;--k-floor:#c98a12;--k-active:#4f8a2b;--k-rest:#9a988f;--k-travel:#3a6fc4}
+@media (prefers-color-scheme:dark){:root{--bg:#141413;--card:#1e1e1c;--ink:#f0eee8;--muted:#9a988f;--line:#2e2d2a;--soft:#262623;--accent:#f07a4f;
+--k-home:#a38bf0;--k-gym:#ff9466;--k-mobility:#4fc1b5;--k-easy:#4fc1b5;--k-floor:#e8b04a;--k-active:#86c25a;--k-rest:#77756e;--k-travel:#6f9cf0}}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Inter,sans-serif}
+main{max-width:560px;margin:0 auto;padding:calc(16px + env(safe-area-inset-top)) 16px calc(40px + env(safe-area-inset-bottom))}
+header{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+header img{width:40px;height:40px;border-radius:10px}
+header h1{font-size:1.25rem;margin:0;letter-spacing:-.01em;line-height:1.1}
+header small{color:var(--muted);font-size:.8rem}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.chip{background:var(--soft);border-radius:999px;padding:4px 11px;font-size:.8rem;color:var(--muted)}
+.chip b{color:var(--ink);font-weight:600}
+.banner{border-radius:12px;padding:12px 14px;margin-bottom:12px;font-size:.92rem;border:1px solid var(--line);background:var(--card)}
+.banner strong{display:block;margin-bottom:2px}
+.banner.warn{border-color:var(--accent)}
+.banner.baby{background:linear-gradient(135deg,#ff7a45,#c8401c);color:#fff;border:0}
+.nav{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.nav button{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:10px;height:40px;min-width:40px;font-size:1.1rem;cursor:pointer}
+.nav .date{flex:1;text-align:center;font-weight:600}
+.nav .date span{display:block;font-weight:400;font-size:.78rem;color:var(--muted)}
+#today{font-size:.8rem;padding:0 12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin-bottom:14px}
+.pill{display:inline-block;font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:#fff;border-radius:6px;padding:2px 8px;margin-right:6px}
+.meta{color:var(--muted);font-size:.85rem}
+.card h2{font-size:1.6rem;margin:8px 0 2px;letter-spacing:-.02em;line-height:1.15}
+.blk{margin-top:16px}
+.blk h3{font-size:.78rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:0 0 6px;font-weight:600}
+.ex{display:flex;align-items:center;gap:12px;width:100%;text-align:left;border:0;background:none;color:inherit;font:inherit;padding:10px 0;border-bottom:1px solid var(--line);cursor:pointer}
+.blk .ex:last-child{border-bottom:0}
+.ex i{flex:none;width:22px;height:22px;border-radius:50%;border:2px solid var(--line);display:grid;place-items:center;font-style:normal;font-size:.75rem;color:#fff}
+.ex.on i{background:var(--accent);border-color:var(--accent)}
+.ex.on .n{color:var(--muted);text-decoration:line-through}
+.ex .n{flex:1}
+.ex .r{color:var(--muted);font-variant-numeric:tabular-nums;font-size:.9rem;text-align:right}
+.note{margin-top:14px;padding:10px 12px;background:var(--soft);border-radius:10px;font-size:.9rem;color:var(--muted)}
+.note.hl{color:var(--ink);border-left:3px solid var(--accent)}
+.done{width:100%;margin-top:16px;height:52px;border-radius:12px;border:0;background:var(--ink);color:var(--bg);font-family:inherit;font-weight:600;font-size:1rem;cursor:pointer}
+.done.is{background:var(--k-active);color:#fff}
+.cal h3{font-size:.9rem;margin:16px 0 8px}
+.grid{display:grid;grid-template-columns:repeat(7,1fr);gap:5px}
+.grid .wd{font-size:.68rem;color:var(--muted);text-align:center}
+.cell{aspect-ratio:1;border-radius:9px;border:1px solid var(--line);background:var(--card);color:var(--ink);font-family:inherit;font-weight:500;font-size:.82rem;cursor:pointer;position:relative;display:grid;place-items:center;padding:0}
+.cell::after{content:"";position:absolute;bottom:5px;left:50%;width:5px;height:5px;margin-left:-2.5px;border-radius:50%;background:var(--c)}
+.cell.past:not(.ok){opacity:.5}
+.cell.ok{background:var(--c);border-color:var(--c);color:#fff}
+.cell.ok::after{background:#fff}
+.cell.now{outline:2px solid var(--ink);outline-offset:1px}
+.cell.sel{box-shadow:inset 0 0 0 2px var(--accent)}
+.legend{display:flex;flex-wrap:wrap;gap:6px 12px;margin-top:12px;font-size:.75rem;color:var(--muted)}
+.legend span::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--c);margin-right:5px}
+#install{font-size:.8rem;color:var(--muted);text-align:center;margin-top:20px}
 </style>
 </head>
 <body>
 <main>
-<h1>Move again.</h1>
-<p class="lead">Jakarta, then dad life. Goal: more energy, thicker upper body, lose the belly band, move without it feeling like effort.</p>
-
-<section>
-<h2><span>1</span>Monthly check-in — the 1st</h2>
-<ul>
-<li>3 photos: front, side, back — same spot, same light</li>
-<li>Waist at the navel (the belly number)</li>
-<li>Weight + one lift number (best incline DB press ×8)</li>
-<li>Send it to one person who'll notice if it doesn't come</li>
-</ul>
-<p class="why">This is what worked in Taiwan. Everything else exists to make this message look good.</p>
-</section>
-
-<section>
-<h2><span>2</span>Gym 3× a week, late afternoon</h2>
-<p style="margin:0">5 min bike warm-up → lifts → <b>15 min incline walk + podcast</b>. Headphones on before leaving home.</p>
-<div class="days">
-<div class="day"><h3>A · Upper</h3><ul>
-<li>Incline DB press<b>3×8–10</b></li><li>Lat pulldown<b>3×10</b></li><li>Cable row<b>3×10</b></li><li>Lateral raise<b>3×15</b></li><li>Curl + pushdown<b>2×12</b></li></ul></div>
-<div class="day"><h3>B · Lower + core</h3><ul>
-<li>Leg press / goblet squat<b>3×10</b></li><li>Romanian deadlift<b>3×10</b></li><li>Walking lunges<b>2×10/leg</b></li><li>Hanging knee raise<b>3×12</b></li><li>Plank<b>3×40s</b></li></ul></div>
-<div class="day"><h3>C · Upper</h3><ul>
-<li>Pull-ups (assisted)<b>3×max</b></li><li>Seated DB shoulder press<b>3×10</b></li><li>Chest-supported row<b>3×10</b></li><li>Dips / push-ups<b>3×max</b></li><li>Hammer + overhead triceps<b>2×12</b></li></ul></div>
+<header>
+<img src="icon.svg" alt="">
+<div><h1>Move again.</h1><small id="sub"></small></div>
+</header>
+<div class="chips" id="chips"></div>
+<div id="banners"></div>
+<div class="nav">
+<button id="prev" aria-label="Previous day">‹</button>
+<div class="date" id="dlabel"></div>
+<button id="next" aria-label="Next day">›</button>
+<button id="today">Today</button>
 </div>
-<p class="why">Add a rep each week; top of range → more weight. Log every set in Hevy/Strong.</p>
-</section>
-
-<section>
-<h2><span>3</span>New block every 6 weeks</h2>
-<p style="margin:0">Never run the same program twice in a row. Seven years of one routine is what killed it last time. Next ideas: padel, climbing gym, swimming, push/pull/legs, a strength block.</p>
-</section>
-
-<section>
-<h2><span>4</span>Baby-proof floor</h2>
-<ul>
-<li><b>Minimum:</b> 10 min at home daily — push-ups, squats, hip &amp; upper-back stretches</li>
-<li><b>Survival gym:</b> 2× 30 min, first 3 exercises only</li>
-</ul>
-<p class="rule">Never miss twice in a row.</p>
-</section>
-
-<section>
-<h2><span>5</span>The belly is food</h2>
-<ul>
-<li>Protein ~1.6 g per kg bodyweight</li>
-<li>Watch es teh manis, kopi susu gula aren, gorengan</li>
-<li>Keep rice, just smaller</li>
-<li>Expect ~1–2 cm off the waist per month</li>
-</ul>
-</section>
-
-<footer>Block 1 · started November 2026</footer>
+<article class="card" id="day"></article>
+<section class="card cal" id="cal"></section>
+<p id="install"></p>
 </main>
+<script src="plan.js"></script>
+<script>
+const KINDS = { home: 'Home', gym: 'Gym', mobility: 'Mobility', floor: 'Floor', active: 'Active', rest: 'Rest', travel: 'Travel' };
+const OPTIONAL = new Set(['rest', 'travel']);
+const store = {
+  get(k, f) { try { return JSON.parse(localStorage.getItem(k)) ?? f } catch { return f } },
+  set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)) } catch {} },
+};
+let done = store.get('fit:done', {}), ticks = store.get('fit:ticks', {});
+const todayKey = () => iso(new Date());
+const idx = k => PLAN.findIndex(p => p.date === k);
+const clampIdx = k => k < PLAN[0].date ? 0 : k > PLAN.at(-1).date ? PLAN.length - 1 : idx(k);
+let sel = clampIdx(location.hash.slice(1) || todayKey());
+const fmt = (d, o) => d.toLocaleDateString('en-GB', o);
+const daysTo = k => Math.round((new Date(k + 'T12:00') - new Date(todayKey() + 'T12:00')) / 864e5);
+const esc = s => s.replace(/[&<>]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' })[c]);
+
+function stats() {
+  const t = todayKey();
+  let workouts = 0, streak = 0;
+  for (const p of PLAN) if (done[p.date]) workouts++;
+  for (let i = clampIdx(t) - (done[t] ? 0 : 1); i >= 0; i--) {
+    const p = PLAN[i];
+    if (p.date > t) continue;
+    if (done[p.date]) streak++; else if (!OPTIONAL.has(p.kind)) break;
+  }
+  const y = PLAN[idx(iso(addDays(new Date(t + 'T12:00'), -1)))];
+  const missedYesterday = y && !OPTIONAL.has(y.kind) && !done[y.date];
+  return { workouts, streak, missedYesterday };
+}
+
+function render() {
+  const p = PLAN[sel], t = todayKey(), s = stats();
+  history.replaceState(null, '', '#' + p.date);
+  document.getElementById('sub').textContent = `Day ${sel + 1} of ${PLAN.length} · ${p.place}`;
+
+  const chips = [];
+  const toJkt = daysTo('2026-11-26'), toBaby = daysTo('2027-01-30');
+  if (t < PLAN[0].date) chips.push(`Starts <b>tomorrow</b>`);
+  if (toJkt > 0) chips.push(`Jakarta in <b>${toJkt}d</b>`);
+  if (toBaby > 0) chips.push(`Baby in <b>${toBaby}d</b>`);
+  chips.push(`<b>${s.workouts}</b> done`, `Streak <b>${s.streak}</b>`);
+  document.getElementById('chips').innerHTML = chips.map(c => `<span class="chip">${c}</span>`).join('');
+
+  const b = [];
+  if (t >= '2027-01-01' && !store.get('fit:newplan', false))
+    b.push(`<div class="banner baby"><strong>Time for the post-baby plan 👶</strong>She's due Jan 30. Make a new plan before Jan 15: 2× 30 min gym + the 10-min floor. <button id="np" style="margin-top:8px;border:0;border-radius:8px;padding:6px 10px;font:inherit;cursor:pointer">Done, it's made</button></div>`);
+  if (s.missedYesterday && !done[t] && t >= PLAN[0].date && t <= PLAN.at(-1).date)
+    b.push(`<div class="banner warn"><strong>Missed yesterday, that's fine.</strong>Never miss twice: today counts, even the 10-min floor.</div>`);
+  document.getElementById('banners').innerHTML = b.join('');
+  document.getElementById('np')?.addEventListener('click', () => { store.set('fit:newplan', true); render(); });
+
+  const rel = p.date === t ? 'Today' : p.date === iso(addDays(new Date(t + 'T12:00'), 1)) ? 'Tomorrow' : p.date === iso(addDays(new Date(t + 'T12:00'), -1)) ? 'Yesterday' : fmt(p.d, { year: 'numeric' });
+  document.getElementById('dlabel').innerHTML = `${fmt(p.d, { weekday: 'short', day: 'numeric', month: 'short' })}<span>${rel}</span>`;
+  document.getElementById('prev').disabled = sel === 0;
+  document.getElementById('next').disabled = sel === PLAN.length - 1;
+
+  const tk = ticks[p.date] || [];
+  let n = 0;
+  const blocks = p.blocks.map(bl => `<div class="blk"><h3>${esc(bl.name)}</h3>${bl.items.map(([name, r]) => {
+    const i = n++, on = tk.includes(i);
+    return `<button class="ex${on ? ' on' : ''}" data-i="${i}"><i>${on ? '✓' : ''}</i><span class="n">${esc(name)}</span><span class="r">${esc(r)}</span></button>`;
+  }).join('')}</div>`).join('');
+  const c = `var(--k-${p.kind})`;
+  document.getElementById('day').innerHTML = `
+    <span class="pill" style="background:${c}">${KINDS[p.kind]}</span><span class="meta">${p.mins ? `~${p.mins} min · ` : ''}${p.place}</span>
+    <h2>${esc(p.title)}</h2>
+    ${p.checkin ? `<div class="note hl">📸 ${esc(p.checkin)}</div>` : ''}
+    ${p.extra ? `<div class="note hl">👶 ${esc(p.extra)}</div>` : ''}
+    ${blocks}
+    ${p.note ? `<div class="note">${esc(p.note)}</div>` : ''}
+    <button class="done${done[p.date] ? ' is' : ''}" id="dn">${done[p.date] ? '✓ Done' : OPTIONAL.has(p.kind) ? 'Mark as rested' : 'Mark day done'}</button>`;
+  document.querySelectorAll('.ex').forEach(el => el.addEventListener('click', () => {
+    const i = +el.dataset.i, a = ticks[p.date] || [];
+    ticks[p.date] = a.includes(i) ? a.filter(x => x !== i) : [...a, i];
+    if (ticks[p.date].length === n) done[p.date] = true;
+    store.set('fit:ticks', ticks); store.set('fit:done', done); render();
+  }));
+  document.getElementById('dn').addEventListener('click', () => {
+    done[p.date] ? delete done[p.date] : (done[p.date] = true);
+    store.set('fit:done', done); render();
+  });
+
+  const months = {};
+  PLAN.forEach((q, i) => (months[fmt(q.d, { month: 'long', year: 'numeric' })] ??= []).push(i));
+  document.getElementById('cal').innerHTML = Object.entries(months).map(([m, is]) => {
+    const lead = (PLAN[is[0]].d.getDay() + 6) % 7;
+    return `<h3>${m}</h3><div class="grid">${['M', 'T', 'W', 'T', 'F', 'S', 'S'].map(d => `<span class="wd">${d}</span>`).join('')}${'<span></span>'.repeat(lead)}${is.map(i => {
+      const q = PLAN[i];
+      const cls = ['cell', done[q.date] && 'ok', q.date < t && 'past', q.date === t && 'now', i === sel && 'sel'].filter(Boolean).join(' ');
+      return `<button class="${cls}" style="--c:var(--k-${q.kind})" data-s="${i}" aria-label="${q.date} ${q.title}">${q.d.getDate()}</button>`;
+    }).join('')}</div>`;
+  }).join('') + `<div class="legend">${Object.entries(KINDS).map(([k, v]) => `<span style="--c:var(--k-${k})">${v}</span>`).join('')}</div>`;
+  document.querySelectorAll('.cell').forEach(el => el.addEventListener('click', () => { sel = +el.dataset.s; render(); window.scrollTo({ top: 0, behavior: 'smooth' }); }));
+}
+
+document.getElementById('prev').onclick = () => { if (sel > 0) { sel--; render(); } };
+document.getElementById('next').onclick = () => { if (sel < PLAN.length - 1) { sel++; render(); } };
+document.getElementById('today').onclick = () => { sel = clampIdx(todayKey()); render(); };
+document.addEventListener('visibilitychange', () => { if (!document.hidden) render(); });
+render();
+
+if (!matchMedia('(display-mode: standalone)').matches && !navigator.standalone)
+  document.getElementById('install').textContent = /iPhone|iPad/.test(navigator.userAgent)
+    ? 'Install: tap Share → Add to Home Screen' : 'Install: browser menu → Install app / Add to Home screen';
+if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js');
+</script>
 </body>
 </html>
