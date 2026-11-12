@@ -111,6 +111,25 @@ const fmt = (d, o) => d.toLocaleDateString('en-GB', o);
 const daysTo = k => Math.round((new Date(k + 'T12:00') - new Date(todayKey() + 'T12:00')) / 864e5);
 const esc = s => s.replace(/[&<>]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' })[c]);
 
+function confetti(el) {
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const b = el.getBoundingClientRect(), c = document.body.appendChild(document.createElement('canvas')), x = c.getContext('2d');
+  c.style.cssText = 'position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:9';
+  c.width = innerWidth; c.height = innerHeight;
+  const cols = ['#f07a4f', '#a38bf0', '#4fc1b5', '#e8b04a', '#86c25a', '#6f9cf0'];
+  const ps = Array.from({ length: 50 }, (_, i) => ({ x: b.left + b.width / 2, y: b.top, vx: (Math.random() - .5) * 12, vy: -6 - Math.random() * 12, s: 5 + Math.random() * 5, r: Math.random() * 6, c: cols[i % cols.length] }));
+  let f = 0;
+  (function tick() {
+    x.clearRect(0, 0, c.width, c.height);
+    x.globalAlpha = Math.min(1, (80 - f) / 25);
+    for (const p of ps) {
+      p.vy += .45; p.x += p.vx; p.y += p.vy; p.r += .2;
+      x.save(); x.translate(p.x, p.y); x.rotate(p.r); x.fillStyle = p.c; x.fillRect(-p.s / 2, -p.s / 3, p.s, p.s * .66); x.restore();
+    }
+    ++f < 80 ? requestAnimationFrame(tick) : c.remove();
+  })();
+}
+
 function stats() {
   const t = todayKey();
   let workouts = 0, streak = 0;
@@ -169,11 +188,11 @@ function render() {
   document.querySelectorAll('.ex').forEach(el => el.addEventListener('click', () => {
     const i = +el.dataset.i, a = ticks[p.date] || [];
     ticks[p.date] = a.includes(i) ? a.filter(x => x !== i) : [...a, i];
-    if (ticks[p.date].length === n) done[p.date] = true;
+    if (ticks[p.date].length === n && !done[p.date]) { done[p.date] = true; confetti(el); }
     store.set('fit:ticks', ticks); store.set('fit:done', done); render();
   }));
-  document.getElementById('dn').addEventListener('click', () => {
-    done[p.date] ? delete done[p.date] : (done[p.date] = true);
+  document.getElementById('dn').addEventListener('click', e => {
+    if (done[p.date]) delete done[p.date]; else { done[p.date] = true; confetti(e.currentTarget); }
     store.set('fit:done', done); render();
   });
 
